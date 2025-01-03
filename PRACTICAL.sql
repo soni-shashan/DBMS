@@ -269,3 +269,182 @@ SELECT * FROM CUSTOMER;
 --PRACTICAL 5
 
 
+
+-- Creating the JobProfile table
+CREATE TABLE JobProfile (
+    Emp_ID INT PRIMARY KEY,                -- Primary Key for Employee ID
+    Emp_Name VARCHAR(100) NOT NULL,         -- Employee Name (cannot be null)
+    Emp_Salary DECIMAL(10, 2) NOT NULL CHECK (Emp_Salary > 0), -- Salary (cannot be null, must be greater than 0)
+    Job_ID VARCHAR(20) UNIQUE,              -- Unique Job ID
+    Department VARCHAR(100)                -- Department Name
+);
+
+-- Creating the Customer table
+CREATE TABLE Customer (
+    Cust_ID INT PRIMARY KEY,               -- Primary Key for Customer ID
+    Cust_Name VARCHAR(100) NOT NULL        -- Customer Name (cannot be null)
+);
+
+INSERT INTO JobProfile (Emp_ID, Emp_Name, Emp_Salary, Job_ID, Department) 
+VALUES (101, 'Smith', 800.00, 'J101', 'Sales');
+
+INSERT INTO JobProfile (Emp_ID, Emp_Name, Emp_Salary, Job_ID, Department) 
+VALUES (102, 'Snehal', 1600.00, 'J102', 'Marketing');
+
+INSERT INTO JobProfile (Emp_ID, Emp_Name, Emp_Salary, Job_ID, Department) 
+VALUES (103, 'Adama', 1100.00, 'J103', 'Sales');
+
+INSERT INTO JobProfile (Emp_ID, Emp_Name, Emp_Salary, Job_ID, Department) 
+VALUES (104, 'Aman', 3000.00, 'J104', 'HR');
+
+INSERT INTO JobProfile (Emp_ID, Emp_Name, Emp_Salary, Job_ID, Department) 
+VALUES (105, 'Anita', 5000.00, 'J105', 'Finance');
+
+INSERT INTO JobProfile (Emp_ID, Emp_Name, Emp_Salary, Job_ID, Department) 
+VALUES (106, 'Anamika', 2975.00, 'J106', 'Operations');
+
+
+
+
+-- 1. Calculate the average salary of employees (with and without duplicates).
+-- Average salary with duplicates
+SELECT AVG(Emp_Salary) AS Average_Salary
+FROM JobProfile;
+
+-- Average salary without duplicates
+SELECT AVG(DISTINCT Emp_Salary) AS Distinct_Average_Salary
+FROM JobProfile;
+
+-- 2. Retrieve the minimum salary from the JobProfile table.
+SELECT MIN(Emp_Salary) AS Min_Salary
+FROM JobProfile;
+
+-- 3. Count the total number of employees and distinct departments.
+-- Total number of employees
+SELECT COUNT(Emp_ID) AS Total_Employees
+FROM JobProfile;
+
+-- Distinct number of departments
+SELECT COUNT(DISTINCT Department) AS Distinct_Departments
+FROM JobProfile;
+
+-- 4. Retrieve the maximum salary from the JobProfile table.
+SELECT MAX(Emp_Salary) AS Max_Salary
+FROM JobProfile;
+
+-- 5. Calculate the total and distinct sum of all salaries.
+-- Total sum of salaries
+SELECT SUM(Emp_Salary) AS Total_Salary
+FROM JobProfile;
+
+-- Distinct sum of salaries
+SELECT SUM(DISTINCT Emp_Salary) AS Distinct_Total_Salary
+FROM JobProfile;
+
+
+-- 1. Calculate the absolute difference between each employee’s salary and ₹1,000.
+SELECT Emp_ID, Emp_Name, ABS(Emp_Salary - 1000) AS Salary_Absolute_Difference
+FROM JobProfile;
+
+-- 2. Compute the square of each employee’s salary.
+SELECT Emp_ID, Emp_Name, POWER(Emp_Salary, 2) AS Squared_Salary
+FROM JobProfile;
+
+-- 3. Round salaries to two decimal places.
+SELECT Emp_ID, Emp_Name, ROUND(Emp_Salary, 2) AS Rounded_Salary
+FROM JobProfile;
+
+-- 4. Find the square root of salaries.
+SELECT Emp_ID, Emp_Name, SQRT(Emp_Salary) AS Salary_Square_Root
+FROM JobProfile;
+
+-- 1. Convert all employee first names to lowercase, uppercase, and initial caps.
+-- Lowercase first name
+SELECT Emp_ID, LOWER(Emp_Name) AS Lowercase_Name
+FROM JobProfile;
+
+-- Uppercase first name
+SELECT Emp_ID, UPPER(Emp_Name) AS Uppercase_Name
+FROM JobProfile;
+
+-- Initial caps first name
+SELECT Emp_ID, INITCAP(Emp_Name) AS Initial_Caps_Name
+FROM JobProfile;
+
+-- 2. Extract the first three characters of employee first names.
+SELECT Emp_ID, SUBSTR(Emp_Name, 1, 3) AS First_Three_Chars
+FROM JobProfile;
+
+
+-- 3. Find the length of each employee’s first name.
+SELECT Emp_ID, LENGTH(Emp_Name) AS Name_Length
+FROM JobProfile;
+
+-- 4. Remove leading 'A' and trailing 'a' from employee first names.
+SELECT Emp_ID, TRIM(LEADING 'A' FROM TRIM(TRAILING 'a' FROM Emp_Name)) AS Cleaned_Name
+FROM JobProfile;
+
+-- 5. Pad employee first names with '*' on the left and right, ensuring a total length of 10.
+SELECT Emp_ID, LPAD(RPAD(Emp_Name, 10, '*'), 10, '*') AS Padded_Name
+FROM JobProfile;
+
+
+-- 1. Convert a string representation of a salary to a numeric format.
+SELECT Emp_ID, CAST(Emp_Salary AS DECIMAL(10,2)) AS Numeric_Salary
+FROM JobProfile;
+
+-- 2. Format a numeric salary value into a string with specific formatting.
+SELECT Emp_ID, TO_CHAR(Emp_Salary, '999,999.99') AS Formatted_Salary
+FROM JobProfile;
+
+
+-- 1. Calculate the date after adding 6 months to the current date.
+SELECT ADD_MONTHS(CURRENT_DATE, 6) AS Date_After_6_Months
+FROM dual;
+
+
+-- 2. Retrieve the last day of the current month.
+SELECT LAST_DAY(CURRENT_DATE) AS Last_Day_Of_Month
+FROM dual;
+
+
+-- 3. Calculate the number of months between two dates.
+SELECT MONTHS_BETWEEN(TO_DATE('2025-12-31', 'YYYY-MM-DD'), TO_DATE('2025-01-01', 'YYYY-MM-DD')) AS Months_Between
+FROM dual;
+
+
+-- 4. Find the next Monday from the current date.
+SELECT NEXT_DAY(CURRENT_DATE, 'MONDAY') AS Next_Monday
+FROM dual;
+
+
+
+-- 1. Retrieve the union of first names from employees and customers.
+SELECT Emp_Name AS First_Name
+FROM JobProfile
+UNION
+SELECT Cust_Name AS First_Name
+FROM Customer;
+
+-- 2. Retrieve the union of first names (including duplicates).
+SELECT Emp_Name AS First_Name
+FROM JobProfile
+UNION ALL
+SELECT Cust_Name AS First_Name
+FROM Customer;
+
+-- 3. Find the intersection of first names from employees and customers.
+SELECT Emp_Name AS First_Name
+FROM JobProfile
+INTERSECT
+SELECT Cust_Name AS First_Name
+FROM Customer;
+
+-- 4. Identify first names present in the employees table but not in customers.
+SELECT Emp_Name AS First_Name
+FROM JobProfile
+MINUS
+SELECT Cust_Name AS First_Name
+FROM Customer;
+
+
