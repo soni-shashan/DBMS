@@ -177,55 +177,55 @@ SELECT emp_comm, emp_no FROM EMPLOYEES ORDER BY emp_comm ASC NULLS LAST, emp_no 
 
 -- Step 1: Creating Employee and Customer schemas with constraints
 
-DROP TABLE Employee;
-CREATE TABLE Employee (
-    Emp_ID NUMBER PRIMARY KEY,
-    Emp_Name VARCHAR2(50) NOT NULL,
-    Emp_Salary NUMBER CHECK (Emp_Salary > 0) NOT NULL,
-    Job_ID VARCHAR2(30) UNIQUE,
-    Dept_No NUMBER,
-    Phone CHAR(10)
+DROP TABLE EMPLOYEES;
+CREATE TABLE EMPLOYEES (
+    emp_id NUMBER PRIMARY KEY,
+    emp_name VARCHAR2(50) NOT NULL,
+    emp_sal NUMBER CHECK (emp_sal > 0) NOT NULL,
+    job_id VARCHAR2(30) UNIQUE,
+    dept_no NUMBER,
+    phone CHAR(10)
 );
 
-DROP TABLE Customer;
-CREATE TABLE Customer (
-    Cust_ID NUMBER PRIMARY KEY,
-    Cust_Name VARCHAR2(50) NOT NULL,
-    Branch VARCHAR2(50) NOT NULL
+DROP TABLE CUSTOMER;
+CREATE TABLE CUSTOMER (
+    cust_id NUMBER PRIMARY KEY,
+    cust_name VARCHAR2(50) NOT NULL,
+    branch VARCHAR2(50) NOT NULL
 );
 
 -- Inserting sample data into Employee table
-INSERT INTO Employee (Emp_ID, Emp_Name, Emp_Salary, Job_ID, Dept_No, Phone)
+INSERT INTO EMPLOYEES (emp_id, emp_name, emp_sal, job_id, dept_no, phone)
 VALUES (101, 'Aman', 3000, 'FI_ACC', 20, '1234567890');
-INSERT INTO Employee (Emp_ID, Emp_Name, Emp_Salary, Job_ID, Dept_No, Phone)
+INSERT INTO EMPLOYEES (emp_id, emp_name, emp_sal, job_id, dept_no, phone)
 VALUES (102, 'Adama', 2500, 'MK_MGR', 10, '2345678901');
-INSERT INTO Employee (Emp_ID, Emp_Name, Emp_Salary, Job_ID, Dept_No, Phone)
+INSERT INTO EMPLOYEES (emp_id, emp_name, emp_sal, job_id, dept_no, phone)
 VALUES (103, 'Anita', 5000, 'IT_PROG', 30, '3456789012');
-INSERT INTO Employee (Emp_ID, Emp_Name, Emp_Salary, Job_ID, Dept_No, Phone)
+INSERT INTO EMPLOYEES (emp_id, emp_name, emp_sal, job_id, dept_no, phone)
 VALUES (104, 'Anamika', 2975, 'LEC', 15, '4567890123');
-INSERT INTO Employee (Emp_ID, Emp_Name, Emp_Salary, Job_ID, Dept_No, Phone)
+INSERT INTO EMPLOYEES (emp_id, emp_name, emp_sal, job_id, dept_no, phone)
 VALUES (105, 'Snehal', 1600, 'COMP_OP', 25, NULL);
 
 -- Inserting sample data into Customer table
-INSERT INTO Customer (Cust_ID, Cust_Name, Branch)
+INSERT INTO Customer (cust_id, cust_name, branch)
 VALUES (201, 'Anil', 'Andheri');
-INSERT INTO Customer (Cust_ID, Cust_Name, Branch)
+INSERT INTO Customer (cust_id, cust_name, branch)
 VALUES (202, 'Sunil', 'Virar');
-INSERT INTO Customer (Cust_ID, Cust_Name, Branch)
+INSERT INTO Customer (cust_id, cust_name, branch)
 VALUES (203, 'Keyur', 'Dadar');
-INSERT INTO Customer (Cust_ID, Cust_Name, Branch)
+INSERT INTO Customer (cust_id, cust_name, branch)
 VALUES (204, 'Vijay', 'Borivali');
 
 -- Task Queries
 
 
 -- 1. Retrieve employees whose names start with 'A' or have 'a' as the third character
-SELECT * FROM Employee
-WHERE Emp_Name LIKE 'A%' OR SUBSTR(Emp_Name, 3, 1) = 'a';
+SELECT * FROM EMPLOYEES
+WHERE emp_name LIKE 'A%' OR SUBSTR(emp_name, 3, 1) = 'a';
 
 -- 2. Retrieve employees whose names are exactly 5 characters long and start with 'Ani'
-SELECT Emp_Name, Emp_ID, Emp_Salary FROM Employee
-WHERE LENGTH(Emp_Name) = 5 AND Emp_Name LIKE 'Ani%';
+SELECT emp_name, emp_id, emp_sal FROM EMPLOYEES
+WHERE LENGTH(emp_name) = 5 AND emp_name LIKE 'Ani%';
 
 
 
@@ -233,22 +233,22 @@ WHERE LENGTH(Emp_Name) = 5 AND Emp_Name LIKE 'Ani%';
 
 
 -- 1. Retrieve employees whose second character is 'M' or 'N'
-SELECT * FROM Employee
-WHERE SUBSTR(Emp_Name, 2, 1) IN ('m', 'n');
+SELECT * FROM EMPLOYEES
+WHERE SUBSTR(emp_name, 2, 1) IN ('m', 'n');
 
 
 -- 2. Retrieve employees whose second character is 'n' and names are exactly 5 characters long
-SELECT * FROM Employee
-WHERE LENGTH(Emp_Name) = 5 AND SUBSTR(Emp_Name, 2, 1) = 'n';
+SELECT * FROM EMPLOYEES
+WHERE LENGTH(emp_name) = 5 AND SUBSTR(emp_name, 2, 1) = 'n';
 
 -- 3. Identify employees with incomplete details and third character as 'a'
-SELECT * FROM Employee
-WHERE (Emp_Salary IS NULL OR Phone IS NULL) AND SUBSTR(Emp_Name, 3, 1) = 'a';
+SELECT * FROM EMPLOYEES
+WHERE (emp_sal IS NULL OR phone IS NULL) AND SUBSTR(emp_sal, 3, 1) = 'a';
 
 
 -- 1. Retrieve names of customers in 'Andheri', 'Dadar', or 'Virar'
-SELECT Cust_Name FROM Customer
-WHERE Branch IN ('Andheri', 'Dadar', 'Virar');
+SELECT cust_name FROM CUSTOMER
+WHERE branch IN ('Andheri', 'Dadar', 'Virar');
 
 
 
@@ -258,9 +258,14 @@ WHERE Job_ID LIKE 'FI_%';
 
 
 -- 2. Retrieve job titles ending with '_MGR' and max salary > 12000
-SELECT job_title FROM Job
+SELECT job_title FROM JOB
 WHERE job_title LIKE '%_MGR' AND max_sal > 12000;
 
 -- Final Verification Queries
-SELECT * FROM Employee;
-SELECT * FROM Customer;
+SELECT * FROM EMPLOYEES;
+SELECT * FROM CUSTOMER;
+
+
+--PRACTICAL 5
+
+
