@@ -447,4 +447,79 @@ MINUS
 SELECT Cust_Name AS First_Name
 FROM Customer;
 
+-- PRACTICAL 6
+CREATE TABLE Product (
+    detorder_no VARCHAR(50),  
+    product_no VARCHAR(50) NOT NULL ,
+    qty_order INT NOT NULL
+);
+
+CREATE TABLE emp_company (
+    ENAME VARCHAR(100) NOT NULL ,
+    CNAME VARCHAR(100) NOT NULL,    
+    SALARY DECIMAL(10, 2) NOT NULL 
+);
+
+
+-- Inserting provided data into Product table
+INSERT INTO Product (detorder_no, product_no, qty_order) VALUES ('O19001', 'P00001', 10);
+INSERT INTO Product (detorder_no, product_no, qty_order) VALUES ('O19001', 'P00002', 3);
+INSERT INTO Product (detorder_no, product_no, qty_order) VALUES ('O19002', 'P00001', 4);
+INSERT INTO Product (detorder_no, product_no, qty_order) VALUES ('O19003', 'P00004', 2);
+INSERT INTO Product (detorder_no, product_no, qty_order) VALUES ('O19004', 'P00003', 6);
+INSERT INTO Product (detorder_no, product_no, qty_order) VALUES ('O19005', 'P00005', 2);
+INSERT INTO Product (detorder_no, product_no, qty_order) VALUES ('O19006', 'P00004', 7);
+
+
+-- Displaying all rows in Product table
+SELECT * FROM Product;
+
+-- Retrieving total quantity ordered for each product
+SELECT product_no, SUM(qty_order) AS total_qty_ordered
+FROM Product
+GROUP BY product_no;
+
+
+-- Retrieving total quantities ordered for products P00001 and P00004
+SELECT product_no, SUM(qty_order) AS total_qty_ordered
+FROM Product
+WHERE product_no IN ('P00001', 'P00004')
+GROUP BY product_no;
+
+
+-- Inserting data into emp_company table
+INSERT INTO emp_company (ENAME, CNAME, SALARY) VALUES ('Anil', 'ACC', 1500);
+INSERT INTO emp_company (ENAME, CNAME, SALARY) VALUES ('Shankar', 'TATA', 2000);
+INSERT INTO emp_company (ENAME, CNAME, SALARY) VALUES ('Jay', 'WIPRO', 1800);
+INSERT INTO emp_company (ENAME, CNAME, SALARY) VALUES ('Sunil', 'WIPRO', 1700);
+INSERT INTO emp_company (ENAME, CNAME, SALARY) VALUES ('Vijay', 'TATA', 5000);
+INSERT INTO emp_company (ENAME, CNAME, SALARY) VALUES ('Prakash', 'TATA', 3000);
+INSERT INTO emp_company (ENAME, CNAME, SALARY) VALUES ('Ajay', 'ACC', 8000);
+INSERT INTO emp_company (ENAME, CNAME, SALARY) VALUES ('Abhay', 'ACC', 1800);
+
+-- Displaying all rows in the emp_company table to verify correct insertion
+SELECT * FROM emp_company;
+
+-- Retrieving the maximum salary for each company
+SELECT CNAME, MAX(SALARY) AS max_salary
+FROM emp_company
+GROUP BY CNAME;
+
+-- Retrieving the average salary for each company
+SELECT CNAME, AVG(SALARY) AS avg_salary
+FROM emp_company
+GROUP BY CNAME;
+
+-- Retrieving the companies with an average salary greater than ₹1,500
+SELECT CNAME, AVG(SALARY) AS avg_salary
+FROM emp_company
+GROUP BY CNAME
+HAVING AVG(SALARY) > 1500;
+
+-- Retrieving the average salary for each company except ACC
+SELECT CNAME, AVG(SALARY) AS avg_salary
+FROM emp_company
+WHERE CNAME != 'ACC'
+GROUP BY CNAME;
+
 
