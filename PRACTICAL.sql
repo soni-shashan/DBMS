@@ -523,3 +523,67 @@ WHERE CNAME != 'ACC'
 GROUP BY CNAME;
 
 
+-- PRACTICAL 8
+CREATE TABLE Salespeople (
+    Snum NUMBER PRIMARY KEY,
+    Sname VARCHAR2(100),
+    City VARCHAR2(100),
+    Comm NUMBER
+);
+
+-- Insert valid salespeople records
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (1, 'Name1', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (2, 'Name2', NULL, 10);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (3, 'Name3', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (4, 'Name4', NULL, 20);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (5, 'Name5', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (6, 'Name6', NULL, 30);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (7, 'Name7', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (8, 'Name8', NULL, 40);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (9, 'Name9', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (10, 'Name10', NULL, 50);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (11, 'Name11', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (12, 'Name12', NULL, 60);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (13, 'Name13', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (14, 'Name14', NULL, 70);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (15, 'Name15', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (16, 'Name16', NULL, 80);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (17, 'Name17', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (18, 'Name18', NULL, 90);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (19, 'Name19', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (20, 'Name20', NULL, 100);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (21, 'Name21', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (22, 'Name22', NULL, 110);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (23, 'Name23', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (24, 'Name24', NULL, 120);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (25, 'Name25', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (26, 'Name26', NULL, 130);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (27, 'Name27', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (28, 'Name28', NULL, 140);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (29, 'Name29', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (30, 'Name30', NULL, 150);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (31, 'Name31', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (32, 'Name32', NULL, 160);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (33, 'Name33', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (34, 'Name34', NULL, 170);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (35, 'Name35', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (36, 'Name36', NULL, 180);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (37, 'Name37', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (38, 'Name38', NULL, 190);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (39, 'Name39', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (40, 'Name40', NULL, 200);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (41, 'Name41', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (42, 'Name42', NULL, 210);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (43, 'Name43', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (44, 'Name44', NULL, 220);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (45, 'Name45', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (46, 'Name46', NULL, 230);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (47, 'Name47', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (48, 'Name48', NULL, 240);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (49, 'Name49', NULL, NULL);
+INSERT INTO Salespeople (Snum, Sname, City, Comm) VALUES (50, 'Name50', NULL, 250);
+
+
+SELECT * FROM Salespeople;
+
+DROP TABLE Salespeople;
