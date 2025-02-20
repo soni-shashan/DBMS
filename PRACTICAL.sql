@@ -760,3 +760,211 @@ SELECT c.CUSTOMER2_NAME, c.RATING,
            ELSE 'Low Rating'
        END AS RATING_CATEGORY
 FROM CUSTOMER2 c;
+
+
+
+
+--PRACTICAL 10
+Declare 
+num1 number;
+num2 number;
+total number;
+
+begin
+
+num1:=&num1;
+num2:=&num2;
+total:=num1*num2;
+
+dbms_output.put_line('Total Product Of Num1 And Num2 Is ' || total);
+
+end;
+
+CREATE OR REPLACE PROCEDURE calculate_product (
+    num1 in NUMBER,
+    num2 in NUMBER
+)
+AS
+BEGIN
+DBMS_OUTPUT.PUT_LINE('Total Product Of Num1 And Num2 is ' || num1*num2);
+
+END;
+
+DECLARE
+ip1 number:=&ip1;
+ip2 number:=&ip2;
+begin
+calculate_product(ip1,ip2);
+end;
+
+--1
+Declare 
+num1 number;
+num2 number;
+total number;
+
+begin
+
+num1:=10;
+num2:=5;
+total:=num1*num2;
+
+dbms_output.put_line('Total Product Of Num1 And Num2 Is ' || total);
+
+end;
+
+DECLARE
+ip1 number:=10;
+ip2 number:=5;
+begin
+calculate_product(ip1,ip2);
+end;
+
+
+--2
+Declare 
+num1 number;
+num2 number;
+total number;
+
+begin
+
+num1:=15;
+num2:=0;
+total:=num1*num2;
+
+dbms_output.put_line('Total Product Of Num1 And Num2 Is ' || total);
+
+end;
+
+DECLARE
+ip1 number:=15;
+ip2 number:=0;
+begin
+calculate_product(ip1,ip2);
+end;
+
+
+--3
+Declare 
+num1 number;
+num2 number;
+total number;
+
+begin
+
+num1:=-4;
+num2:=-6;
+total:=num1*num2;
+
+dbms_output.put_line('Total Product Of Num1 And Num2 Is ' || total);
+
+end;
+
+DECLARE
+ip1 number:=-4;
+ip2 number:=-6;
+begin
+calculate_product(ip1,ip2);
+end;
+
+--4
+Declare 
+num1 number;
+num2 number;
+total number;
+
+begin
+
+num1:=7;
+num2:=-3;
+total:=num1*num2;
+
+dbms_output.put_line('Total Product Of Num1 And Num2 Is ' || total);
+
+end;
+
+DECLARE
+ip1 number:=7;
+ip2 number:=-3;
+begin
+calculate_product(ip1,ip2);
+end;
+
+--5
+Declare 
+num1 number;
+num2 number;
+total number;
+
+begin
+
+num1:=2.5;
+num2:=4.2;
+total:=num1*num2;
+
+dbms_output.put_line('Total Product Of Num1 And Num2 Is ' || total);
+
+end;
+
+DECLARE
+ip1 number:=2.5;
+ip2 number:=4.2;
+begin
+calculate_product(ip1,ip2);
+end;
+
+
+SELECT * FROM EMPLOYEES
+
+
+DECLARE 
+EMP_NAME VARCHAR2(50);
+EMP_SAL NUMBER;
+BEGIN
+
+SELECT EMP_NAME,EMP_SAL INTO EMP_NAME,EMP_SAL FROM EMPLOYEES WHERE EMP_ID=106;
+
+
+DBMS_OUTPUT.PUT_LINE('EMPLOYEE NAME IS ' || EMP_NAME);
+DBMS_OUTPUT.PUT_LINE('EMPLOYEE SALARY IS ' || EMP_SAL);
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('EMPLOYEE IS NOT FOUND');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('ERROR : ' || SQLERRM);
+END;
+
+
+
+DECLARE 
+EMP_ID NUMBER;
+EMP_NAME VARCHAR2(50);
+EMP_SAL NUMBER;
+JOB_ID VARCHAR2(30);
+DEPT_NO NUMBER;
+PHONE CHAR(10);
+BEGIN
+EMP_ID:=&EMP_ID;
+EMP_NAME:='&EMP_NAME';
+EMP_SAL:=&EMP_SAL;
+JOB_ID:='&JOB_ID';
+DEPT_NO:=&DEPT_NO;
+PHONE:='&PHONE';
+
+INSERT INTO EMPLOYEES (EMP_ID, EMP_NAME, EMP_SAL, JOB_ID, DEPT_NO, PHONE)
+    VALUES (EMP_ID, EMP_NAME, EMP_SAL, JOB_ID, DEPT_NO, PHONE);
+
+
+DBMS_OUTPUT.PUT_LINE('DATA SUCCESSFULLY ADDED');
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('EMPLOYEE IS NOT FOUND');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('ERROR : ' || SQLERRM);
+END;
+
+SELECT * FROM EMPLOYEES;
+
