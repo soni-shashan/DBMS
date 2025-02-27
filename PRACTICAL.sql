@@ -968,45 +968,47 @@ END;
 
 SELECT * FROM EMPLOYEES;
 
---practical 11
+-------------------------------------------------  pract 11  -------------------------------------------------------
 
-CREATE TABLE PERSONAL(
-        NAME VARCHAR(45),AGE INT 
-        );
-INSERT  INTO PERSONAL VALUES('MATHEWS',30);
-INSERT  INTO PERSONAL VALUES('MARK',20);
+-- Step 1: Create Employee Table
+CREATE TABLE Employee (
+    emp_id NUMBER PRIMARY KEY,
+    name VARCHAR2(100),
+    age NUMBER
+);
 
-SELECT *FROM PERSONAL
-    
-CREATE TBALE MY_BACKUP_TABLE(
-    COL1 VARCHAR2(100),
-    COL2 NUMBER,
-    OP_TYPE VARCHAR2(10),
-    CHANGE_TIME TIMESTAMP
-    );
+-- Step 2: Create Employee_Archive Table
+CREATE TABLE Employee_Archive (
+    emp_id NUMBER PRIMARY KEY,
+    name VARCHAR2(100),
+    age NUMBER,
+    deleted_at TIMESTAMP DEFAULT SYSTIMESTAMP
+);
 
-create or replace trigger my_trigger_insert
-after insert on personal 
-for each row 
-begin
-insert into my_backup_table(col1,col2,op_type,change_time)
-values (:old.name,:old.age,'old',systimestamp);
- 
-insert into my_backup_table(col1,col2,op_type,change_time)
-values (:new.name,:new.age,'new',systimestamp);
-end;
+-- Step 3: Insert Sample Data
+INSERT INTO Employee VALUES (1, 'John Doe', 21);
+INSERT INTO Employee VALUES (2, 'Jane Smith', 25);
+INSERT INTO Employee VALUES (3, 'Alice Brown', 21);
+INSERT INTO Employee VALUES (4, 'Bob White', 30);
+COMMIT;
 
-update personal set age =30 where name ='john deo';
+-- Step 4: Create Trigger for Archiving Before Deletion
+CREATE OR REPLACE TRIGGER trg_archive_before_delete
+BEFORE DELETE ON Employee
+FOR EACH ROW
+BEGIN
+    -- Insert the deleted record into Employee_Archive
+    INSERT INTO Employee_Archive (emp_id, name, age)
+    VALUES (:OLD.emp_id, :OLD.name, :OLD.age);
+END;
+/
 
-create or replace trigger my_trigger_delete 
-after delete on personal
-for each row
-begin
+-- Step 5: Create PL/SQL Block to Delete Employees Aged 21
+BEGIN
+    DELETE FROM Employee WHERE age = 21;
+    COMMIT;
+END;
+/
 
-insert into my_backup_table(col1,col2,op_type,change_time) 
-values (:old.name,:old.age,'delete',systimestamp);
-
-end;
-delete from person1 where name='John Doe';
-      
-    
+SELECT * FROM Employee;          -- Should not have employees aged 21
+SELECT * FROM Employee_Archive;  -- Should contain archived records of deleted employees
